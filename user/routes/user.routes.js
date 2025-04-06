@@ -4,10 +4,10 @@ const userController = require('../controllers/user.controller')
 const authMiddleWare = require('../middleware/authMiddleWare')
 
 
-routes.post('/register',userController.register)
-routes.post('/login',userController.login)
-routes.get('/logout',userController.logout)
-routes.get('/profile',authMiddleWare.userAuth,userController.profile)
+router.post('/register',userController.register)
+router.post('/login',userController.login)
+router.get('/logout',userController.logout)
+router.get('/profile',authMiddleWare.userAuth,userController.profile)
 
 module.exports = router 
 
