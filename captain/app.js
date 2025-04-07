@@ -4,7 +4,9 @@ const cookieParser = require('cookie-parser')
 const connect = require('./db/db')
 const app = express();
 const captainRoutes = require('./routes/captain.routes')
+const rabbitMq = require('./service/rabbit')
 
+rabbitMq.connect();
 connect()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))

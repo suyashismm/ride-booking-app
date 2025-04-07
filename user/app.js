@@ -3,7 +3,9 @@ const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
 const connect = require('./db/db')
 const userRoutes = require('./routes/user.routes')
+const rabbitMq = require('./service/rabbit')
 
+rabbitMq.connect();
 const app = express();
 
 dotenv.config()

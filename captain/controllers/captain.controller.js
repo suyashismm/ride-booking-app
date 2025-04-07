@@ -1,6 +1,7 @@
 const captainModel = require('../models/captain.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const {subscribeToQueue} = require('../service/rabbit')
 
 module.exports.register = async (req,res) => {
     try{
@@ -85,3 +86,21 @@ module.exports.profile = async (req,res) => {
     }
 }
 
+
+module.exports.toggleAvailability = async (req,res) => {
+    try{
+        const captain = await captainModel.fingById(req.captain)
+        captain.isAvailable = !captain.isAvailable;
+        await captain.save();
+        res.send(captain);
+    }
+    catch(error){
+        console.error("Error in captain toggle",error)
+        res.status(500).json({message:error.message})
+    }
+}
+
+
+subscribeToQueue("new-ride",(data) => {
+    console.log(JSON.parse(data));
+})
