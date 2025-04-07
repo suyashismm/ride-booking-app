@@ -81,6 +81,7 @@ module.exports.profile = async (req,res) => {
         res.send(req.user);
     }
     catch(error){
+        console.log("errror in profileee====================")
         res.status(500).json({message:error.message})
     }
 }

@@ -5,11 +5,12 @@ const connect = require('./db/db')
 const userRoutes = require('./routes/user.routes')
 const rabbitMq = require('./service/rabbit')
 
-rabbitMq.connect();
 const app = express();
 
 dotenv.config()
+
 connect()
+rabbitMq.connect();
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))

@@ -5,10 +5,11 @@ const connect = require('./db/db')
 const rideRoutes = require('./routes/ride.routes')
 const rabbitMq = require('./service/rabbit')
 
-rabbitMq.connect();
 const app = express();
 
 dotenv.config()
+rabbitMq.connect();
+
 connect()
 
 app.use(express.json())
